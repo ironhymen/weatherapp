@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+
+
+{% block title %}Chrisweather{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    Chrisweather
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <div class="search-site">
+        <form action="/weather" method="get">
+            <input type="text" list="sitelist" name="townsearch" id="townsearch-input">
+            <datalist id="sitelist">
+                {% for town in townresults %}
+                <option value="{{ town }}">
+                    {% endfor %}
+            </datalist>
+            <button type="submit">Get Town</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,177 @@
+html, body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 999;
+  background-color: #ccc;
+}
+
+.search-site {
+  background-color: red;
+  margin: 0 auto;
+  text-align: center;
+  border: solid 1px black;
+  width: 500px;
+  padding: 25px;
+}
+
+.container {
+  width: 75%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.dateinfo {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.moreinfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weatherinfo {
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.temperature {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+.moreweather {
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.card {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f8f8f8;
+}
+
+.wind {
+  position: relative;
+  text-align: center;
+  display: table;
+}
+
+#compass {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+
+}
+
+#bearing {
+  font-size: 0.8rem;
+  margin: 1rem;
+}
+
+.hourly-header {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.hourly-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.forecast-day {
+  width: 20%;
+  min-width: 200px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f8f8f8;
+}
+
+.hourtempbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.hourly-condition {
+  margin-bottom: 0;
+}
+
+.almanac {
+  padding: 1rem;
+  margin-top: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.almanac ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.almanac ul li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 95%;
+  }
+
+  .moreinfo {
+    flex-direction: column;
+  }
+
+  .weatherinfo {
+    margin-right: 0;
+  }
+
+  .moreweather {
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .forecast-day {
+    width: 40%;
+    min-width: 200px;
+  }
+
+  #compass {
+    max-width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}

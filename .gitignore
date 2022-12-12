@@ -1,0 +1,8 @@
+venv
+settings.json
+__pycache__
+weatherflask.wsgi
+.vscode
+static/icons
+instance
+
