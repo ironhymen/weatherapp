@@ -23,7 +23,7 @@
                 <option value="{{ town }}">
                     {% endfor %}
             </datalist>
-            <button type="submit">Get Town</button>
+            <button type="submit" id="townselect">Get Town</button>
         </form>
     </div></div>
 
@@ -53,10 +53,24 @@
             </div>
         </div>
         <div class="moreweather">
-            <p>Dewpoint: {{ weather.dewpoint }}</p>
-            <p>Pressure: {{ weather.pressure }}</p>
-            <p>Visibility: {{ weather.visibility }}</p>
-            <p>Relative Humidity: {{ weather.relative_humidity }}</p>
+            <table class="info-table">
+                <tr>
+                  <td>Dewpoint:</td>
+                  <td>{{ weather.dewpoint }}</td>
+                </tr>
+                <tr>
+                  <td>Pressure:</td>
+                  <td>{{ weather.pressure }}</td>
+                </tr>
+                <tr>
+                  <td>Visibility:</td>
+                  <td>{{ weather.visibility }}</td>
+                </tr>
+                <tr>
+                  <td>Relative Humidity:</td>
+                  <td>{{ weather.relative_humidity }}</td>
+                </tr>
+              </table>
         </div>
         <div class="wind">
             <canvas id="compass"></canvas>

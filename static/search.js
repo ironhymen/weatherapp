@@ -1,5 +1,5 @@
 //prevent button from being pressed if user inputs town not in townresults
-document.querySelector('button').addEventListener('click', function (e) {
+document.querySelector('townselect').addEventListener('click', function (e) {
     var townsearch = document.querySelector('#townsearch-input').value;
     var townresults = document.querySelector('#sitelist').options;
     var townresultsArray = [];

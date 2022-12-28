@@ -88,13 +88,35 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-self: center;
+  align-self: flex-end;
   background-color: #BFEFFF;
   border-radius: 0.5rem;
   margin: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-width: 25ch;
   height: 100%;
+}
+
+.info-table {
+  border-collapse: collapse; /* collapse the borders between table cells */
+  width: 100%; /* make the table fill the width of its container */
+}
+
+.info-table td {
+  padding: 8px; /* add some padding to the table cells */
+  text-align: left; /* align the text to the left */
+}
+
+.info-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2); /* add a light grey background color to every even row */
+}
+
+.info-table tr:hover {
+  background-color: #ff0482; /* add a light grey background color to the rows when the mouse is hovering over them */
+}
+
+.info-table td:nth-child(2) {
+  font-weight: 700;
 }
 
 .wind {
@@ -119,7 +141,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .temperature {
   font-size: 2.5rem;
-  font-weight: bold;
+  font-weight: 700;
   margin-left: 1rem;
 }
 
@@ -173,9 +195,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .forecast-day .hourtempbox .temperature {
-  color: #bbe4ff;
+  color: #fff;
   font-size: 1.5em;
-  margin: -2em;
+  margin: -3em -3em;
   z-index: 999999;
   text-shadow: 2px 2px #000; 
 }
@@ -217,8 +239,8 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center; /* center the cell that spans two columns */
 }
 
-.hourly-table td:first-child {
-  font-weight: bold; /* make the first column bold */
+.hourly-table td:nth-child(2) {
+  font-weight: 700; /* make the first column 700 */
 }
 
 /* .hourly-condition {
@@ -250,12 +272,59 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .almanac-table td:first-child {
-  font-weight: bold; /* make the first column bold */
+  font-weight: 700; /* make the first column 700 */
 }
 
 .almanac-table td:last-child {
   text-align: right; /* right align the last column */
 }
+
+/* SEARCH AND INDEX CSS */
+#townsearch-input {
+  /* add some styles to the input element */
+  width: 300px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+#townselect {
+  /* add some styles to the button element */
+  width: 100px;
+  background-color: #ff0482;
+  color: white;
+  font-family: neue-haas-grotesk-display,sans-serif;
+  font-weight: 700;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* add some styles to the flashes element */
+.flashes {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.flashes li {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+
+
+
+
+
 @media only screen and (max-width: 800px) {
   .container {
     width: 95%;
@@ -272,6 +341,7 @@ h1, h2, h3, h4, h5, h6 {
   .moreweather {
     padding-left: 0;
     margin-top: 1rem;
+    align-self: center;
   }
 
   .forecast-day {
