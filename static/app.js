@@ -24,17 +24,25 @@ ctx.fill();
 
 // draw line
 if (bearing !== "no data") {
-    ctx.strokeStyle = '#0099FF';
-    ctx.fillStyle = "#0099FF";
+    ctx.strokeStyle = '#000';
+    ctx.fillStyle = "#ff0000";
     ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(0, -90);
-    ctx.lineWidth = 4;
+    ctx.moveTo(0, -90);  // start at the TIP of the triangle
+    ctx.lineTo(-10, 0);  // draw the left point of the triangle
+    ctx.lineTo(10, 0);  // draw the right point of the triangle
+    ctx.closePath();  // draw a line back to the start to complete the triangle
+    ctx.fill();  // fill the triangle with the current fill style
+    ctx.strokestyle = "#000";
+    ctx.fillStyle = "#000";
+    ctx.beginPath();
+    ctx.moveTo(0, 90);
+    ctx.lineTo(-10, 0);
+    ctx.lineTo(10, 0);
+    ctx.closePath();
     ctx.fill();
-    ctx.stroke();
 } else {
     // Set the fill color to yellow
-    ctx.fillStyle = "#0099FF";
+    ctx.fillStyle = "#000";
     ctx.font = "bold 30px 'Helvetica Neue', sans-serif";
     ctx.fillText("None", -30, 10)
 }
@@ -47,9 +55,10 @@ ctx.translate(125, 125)
 // draw the N, S, E, W
 ctx.textAlign = "center";
 ctx.textBaseline = "middle";
-ctx.fillStyle = "#0099FF";
+ctx.fillStyle = "#ff0000";
 ctx.font = "bold 45px 'Helvetica Neue', sans-serif";
 ctx.fillText("N", 0, -95);
+ctx.fillStyle = "#000";
 ctx.fillText("S", 0, 95);
 ctx.fillText("E", 95, 0);
 ctx.fillText("W", -87, 0);

@@ -7,7 +7,7 @@ html, body {
   box-sizing: border-box;
   font-size: 16px;
   line-height: 1.5;
-  background-color: yellowgreen;
+  background-color: #98FB98;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .top-bar {
-  background-color: #0099FF;
+  background-color: #BFEFFF;
   padding: 1rem;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
@@ -37,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 500px;
   padding: 25px;
   border-radius: 0.75em;
-  background-color: #0099FF;
+  background-color: #BFEFFF;
 }
 
 .container {
@@ -61,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
   
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  background-color: #0099FF;
+  background-color: #BFEFFF;
 }
 
 .moreinfo {
@@ -73,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .condition {
-  background-color: #0099FF;
+  background-color: #BFEFFF;
   border-radius: 0.5rem;
   margin: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   align-self: center;
-  background-color: #0099FF;
+  background-color: #BFEFFF;
   border-radius: 0.5rem;
   margin: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
   display: table;
   margin: 0.25rem;
   padding: 1rem;
-  background-color: #0099FF;
+  background-color: #BFEFFF;
   border-radius: 0.5rem;
   min-width: 25ch;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -141,7 +141,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   text-align: center;
-  background-color: #0099FF;
+  background-color: #BFEFFF;
   border-radius: 0.5rem;
 }
 
@@ -165,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 1rem;
   margin-right: 1rem; */
   padding: 1rem;
-  background-color: #0099FF;
+  background-color: #BFEFFF;
   /* min-height: 425px;
   max-height: 425px; */
   justify-content: space-between;
@@ -202,14 +202,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hourly-table tr:hover {
-  background-color: #ddd; /* add a hover effect to the rows */
+  background-color: #ff0482; /* add a hover effect to the rows */
 }
 
 .hourly-table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4caf50;
+  background-color: #ff0482;
   color: white;
 }
 
@@ -229,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  background-color: #0099FF;
+  background-color: #BFEFFF;
   margin: 2rem;
 }
 
@@ -242,7 +242,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .almanac-table tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.3); /* add a hover effect to the rows */
+  background-color: #ff0482; /* add a hover effect to the rows */
 }
 
 .almanac-table td[colspan="3"] {
