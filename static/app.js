@@ -28,7 +28,7 @@ if (bearing !== "no data") {
     ctx.fillStyle = "#0099FF";
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(0, 90);
+    ctx.lineTo(0, -90);
     ctx.lineWidth = 4;
     ctx.fill();
     ctx.stroke();
