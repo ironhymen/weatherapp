@@ -10,7 +10,8 @@
 
 
 <div class="container">
-    <h2>{{weather['station']}}</h2><button type="button" onclick="convertToFahrenheit()">Switch to
+
+    <div class="top-bar"><h2>{{weather['station']}}</h2><button type="button" onclick="convertToFahrenheit()">Switch to
         Fahrenheit</button>
     <button type="button" onclick="convertToCelcius()">Switch to
         Celcius</button>
@@ -24,92 +25,158 @@
             </datalist>
             <button type="submit">Get Town</button>
         </form>
-    </div>
-    <div class="header">
-        <div class="dateinfo">
-            <h4 data-date="{{weather['textsummary']}}">{{weather['textsummary']}}</h4>
-        </div>
-        <div class="moreinfo">
-            <div class="weatherinfo">
-                {% if weather['iconcode'] is not none %}
-                <img class="img" src="{{url_for('static', filename='icons/' + weather['iconcode'] + '.gif')}}"
-                    width="60px">
-                {% endif %}
-                <p class="con">{{weather['condition']}}</p>
-                <div class="temperature">
-                    <div class="celcius">{{weather['temperature']}}&#176;C</div>
-                </div>
-            </div>
-            <div class="moreweather">
-                <p>Dewpoint: {{ weather.dewpoint }}</p>
-                <p>Pressure: {{ weather.pressure }}</p>
-                <p>Visibility: {{ weather.visibility }}</p>
-                <p>Relative Humidity: {{ weather.relative_humidity }}</p>
-            </div>
-            <div class="card wind">
-                <h5 class="card-header">Wind</h5>
-                <canvas id="compass"></canvas>
-                <p>{{weather['wind_speed']}}km/h&#160;</p>
-                <p>Coming from: {{weather['wind_direction']}}</p>
-                <p id="bearing">{{weather['wind_bearing']}}</p>
-            </div>
-        </div>
-    </div>
+    </div></div>
 
-    <div class="hourly-header">
-        <h2>Weather Hourly Forecast</h2>
+<script src="/static/search.js"></script>
+<div class="main-weather">
+    <div class="dateinfo">
+        <h4 data-date="{{weather['textsummary']}}">{{weather['textsummary']}}</h4>
     </div>
-    <div class="hourly-container">
-        {% for date_time_ast, hour in hourly.items() %}
-        <div class="forecast-day card">
-            <h5 class="card-title" data-date="{{hour.forecast_time}}">{{hour.forecast_time}}</h5>
-            <div class="hourtempbox">
-                <div class="temperature">
-                    <div class="celcius">{{hour.temperature}}&#176;C</div>
-                </div>
-                <img class="img" src="{{url_for('static', filename='icons/' + hour.iconCode + '.gif')}}" width="60px"
-                    alt="{{ hour.condition }}" title="{{ hour.condition }}">
-            </div>
-            <p class="hourly-condition">{{ hour.condition }}</p>
-            {% if hour.windChill %}
-            <p>Wind Chill:
-            <div class="celcius">{{ hour.windChill }}&#176;C</div>
-            </p>
+    <div class="moreinfo">
+        <div class="condition">
+            {% if weather['iconcode'] is not none %}
+            <img class="img" src="{{url_for('static', filename='icons/' + weather['iconcode'] + '.svg')}}" width="250" height="250">
             {% endif %}
-            <p>Wind Speed: {{ hour.windSpeed }} {{ hour.windDirFull }}</p>
-            <p>Wind Gusting: {{ hour.windGusting }}</p>
+            <p class="con">{{weather['condition']}}</p>
+            <div class="temperature">
+                <div class="celcius">
+                    {{weather['temperature']}}&#176;C
+                </div>
+            </div>
         </div>
-        {% endfor %}
+        <div class="moreweather">
+            <p>Dewpoint: {{ weather.dewpoint }}</p>
+            <p>Pressure: {{ weather.pressure }}</p>
+            <p>Visibility: {{ weather.visibility }}</p>
+            <p>Relative Humidity: {{ weather.relative_humidity }}</p>
+        </div>
+        <div class="wind">
+            <canvas id="compass"></canvas>
+            <p>{{weather['wind_speed']}}km/h&#160;</p>
+            <p>Coming from: {{weather['wind_direction']}}</p>
+            <p id="bearing">{{weather['wind_bearing']}}</p>
+        </div>
     </div>
+    
+    
+</div>
 
-    {% if almanac is defined %}
-    <div class="almanac card">
-        <h4 class="card-header">Almanac</h4>
-        <ul>
-            <li>Extreme Max Temp: <div class="celcius">{{ almanac.extremeMaxTemp }}&#176;C</div> (Year: {{
-                almanac.extremeMax_year }})</li>
-            <li>Extreme Min Temp: <div class="celcius">{{ almanac.extremeMinTemp }}&#176;C</div> (Year: {{
-                almanac.extremeMin_year }})</li>
-            <li>Normal Max Temp: <div class="celcius">{{ almanac.normalMaxTemp }}&#176;C</div>
-            </li>
-            <li>Normal Min Temp: <div class="celcius">{{ almanac.normalMinTemp }}&#176;C</div>
-            </li>
-            <li>Normal Mean Temp: <div class="celcius">{{ almanac.normalMeanTemp }}&#176;C</div>
-            </li>
-            <li>Extreme Rainfall: {{ almanac.extremeRainfall }}mm (Year: {{ almanac.extremeRainfall_year }})
-            </li>
-            <li>Extreme Snowfall: {{ almanac.extremeSnowfall }}cm (Year: {{ almanac.extremeSnowfall_year }})
-            </li>
-            <li>Extreme Precipitation: {{ almanac.extremePrecipitation }}mm (Year: {{
-                almanac.extremePrecipitation_year }})</li>
-            <li>Extreme Snow On Ground: {{ almanac.extremeSnowOnGround }}cm (Year: {{
-                almanac.extremeSnowOnGround_year
-                }})</li>
-            <li>Pop: {{ almanac.almanacpop }}%</li>
-        </ul>
+
+
+
+
+
+
+<div class="hourly-header">
+    <h2>Weather Hourly Forecast</h2>
+</div>
+<div class="hourly-container">
+    {% for date_time_ast, hour in hourly.items() %}
+    <div class="forecast-day">
+        <h5 class="card-title" data-date="{{hour.forecast_time}}">{{hour.forecast_time}}</h5>
+        <div class="hourtempbox">
+            <div class="temperature">
+                <div class="celcius">{{hour.temperature}}&#176;C</div>
+            </div>
+            
+            <img class="img" src="{{url_for('static', filename='icons/' + hour.iconCode + '.svg')}}" width="100px"
+                alt="{{ hour.condition }}" title="{{ hour.condition }}">
+        </div>
+        <table class="hourly-table">
+            <tr>
+                <td colspan="2">{{ hour.condition }}</td>
+            </tr>
+        {% if hour.windChill %}
+        <tr>
+            <td>Wind Chill:</td>
+            <td><div class="celcius">{{ hour.windChill }}&#176;C</div></td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td>Wind Speed:</td>
+            <td> {{ hour.windSpeed }} {{ hour.windDirFull }}</td>
+        </tr>
+        <tr>
+            <td>Wind Gust:</td>
+            <td> {{ hour.windGusting }}</td>
+        </tr>
+        <tr>
+            <td>Wind Gusting:</td>
+            <td>{{ hour.windGusting }}</td>
+        </tr>
+    </table>
     </div>
-    {% endif %}
+    {% endfor %}
+</div>
+
+
+
+
+
+
+
+
+{% if almanac is defined %}
+<div class="almanac">
+    
+    <table class="almanac-table">
+        <thead>
+            <tr>
+                <th colspan="3">Almanac</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Extreme Max Temp:</td> 
+                <td><div class="celcius">{{ almanac.extremeMaxTemp }}&#176;C</div></td>
+                <td>(Year: {{almanac.extremeMax_year }})</td>
+            </tr>
+            <tr>
+                <td>Extreme Min Temp:</td>
+                <td><div class="celcius">{{ almanac.extremeMinTemp }}&#176;C</div></td>
+                <td> (Year: {{almanac.extremeMin_year }})</td>
+            </tr>
+            <tr>
+                <td>Normal Max Temp:</td>
+                <td><div class="celcius">{{ almanac.normalMaxTemp }}&#176;C</div></td>
+            </tr>
+            <tr>
+                <td>Normal Min Temp:</td> 
+                <td><div class="celcius">{{ almanac.normalMinTemp }}&#176;C</div></td>
+            </tr>
+            <tr>
+                <td>Normal Mean Temp:</td> 
+                <td><div class="celcius">{{ almanac.normalMeanTemp }}&#176;C</div></td>
+            </tr>
+            <tr>
+                <td>Extreme Rainfall:</td> 
+                <td>{{ almanac.extremeRainfall }}mm </td>
+                <td> (Year: {{ almanac.extremeRainfall_year }})</td>
+            </tr>
+            <tr>
+                <td>Extreme Snowfall:</td> 
+                <td>{{ almanac.extremeSnowfall }}cm </td>
+                <td>(Year: {{ almanac.extremeSnowfall_year }})</td>
+            </tr>
+            <tr>
+                <td>Extreme Precipitation:</td>
+                <td>{{ almanac.extremePrecipitation }}mm </td>
+                <td>(Year: {{almanac.extremePrecipitation_year }})</td>
+            </tr>
+            <tr><td>Extreme Snow On Ground:</td> 
+                <td>{{ almanac.extremeSnowOnGround }}cm </td>
+                <td>(Year: {{almanac.extremeSnowOnGround_year}})</td>
+            </tr>
+            <tr>
+                <td>Pop:</td> 
+                <td>{{ almanac.almanacpop }}%</td>
+                </tr>
+        </tbody>
+    </table>
+</div>
+{% endif %}
 
 </div>
-<script src="static/app.js"></script>
+<script src="/static/app.js"></script>
+</div>
 {% endblock %}

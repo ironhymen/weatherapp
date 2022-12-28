@@ -3,23 +3,23 @@ console.log(bearing)
 let canvas = document.getElementById('compass');
 let ctx = canvas.getContext('2d');
 
-canvas.width = 150;
-canvas.height = 150;
-ctx.translate(75, 75); // move 0,0 to center
+canvas.width = 250;
+canvas.height = 250;
+ctx.translate(125, 125); // move 0,0 to center
 ctx.rotate(bearing * Math.PI / 180); // rotate according to bearing
 
 // draw outer circle
-ctx.fillStyle = '#0099FF';
+ctx.fillStyle = '#000';
 ctx.beginPath();
-ctx.arc(0, 0, 50, 0, 2 * Math.PI);
-ctx.strokeStyle = '#0099FF';
+ctx.arc(0, 0, 122, 0, 2 * Math.PI);
+ctx.strokeStyle = '#fff';
 ctx.lineWidth = 0.05; // make the circle less thick
 ctx.fill();
 
 // draw inner circle
 ctx.fillStyle = 'white';
 ctx.beginPath();
-ctx.arc(0, 0, 48, 0, 2 * Math.PI);
+ctx.arc(0, 0, 118, 0, 2 * Math.PI);
 ctx.fill();
 
 // draw line
@@ -28,29 +28,31 @@ if (bearing !== "None") {
     ctx.fillStyle = "#0099FF";
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(0, 40);
+    ctx.lineTo(0, 90);
     ctx.lineWidth = 4;
     ctx.fill();
     ctx.stroke();
 } else {
     // Set the fill color to yellow
     ctx.fillStyle = "#0099FF";
-    ctx.font = "15px Josefin Sans";
-    ctx.fillText("None", -15, 5)
+    ctx.font = "bold 30px 'Helvetica Neue', sans-serif";
+    ctx.fillText("None", -30, 10)
 }
 
 // save current transform
 ctx.save();
 ctx.setTransform(1, 0, 0, 1, 0, 0)
-ctx.translate(75, 75)
+ctx.translate(125, 125)
 
 // draw the N, S, E, W
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
 ctx.fillStyle = "#0099FF";
-ctx.font = "15px Josefin Sans";
-ctx.fillText("N", -5, -35);
-ctx.fillText("S", -4, 40);
-ctx.fillText("E", 35, 5);
-ctx.fillText("W", -40, 5);
+ctx.font = "bold 45px 'Helvetica Neue', sans-serif";
+ctx.fillText("N", 0, -95);
+ctx.fillText("S", 0, 95);
+ctx.fillText("E", 95, 0);
+ctx.fillText("W", -87, 0);
 
 // restore transform to exclude the bearing rotation
 ctx.restore();
