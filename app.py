@@ -131,6 +131,10 @@ def get_weather(response):
     textsummary = current_conditions.find('dateTime/timeStamp')
     if textsummary is not None:
         textsummary = textsummary.text
+        date_string = textsummary
+        date_time_obj = datetime.strptime(date_string, '%Y%m%d%H%M%S')
+        date_time_12hr = date_time_obj.strftime('%Y %m %d %H %M %S')
+        textsummary = date_time_12hr
     else:
         textsummary = "no data"
 
