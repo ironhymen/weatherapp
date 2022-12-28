@@ -23,7 +23,7 @@ ctx.arc(0, 0, 118, 0, 2 * Math.PI);
 ctx.fill();
 
 // draw line
-if (bearing !== "None") {
+if (bearing !== "no data") {
     ctx.strokeStyle = '#0099FF';
     ctx.fillStyle = "#0099FF";
     ctx.beginPath();

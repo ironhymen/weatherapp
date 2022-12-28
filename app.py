@@ -82,34 +82,81 @@ def get_weather(response):
 
     # create an xml element tree
     root = ET.fromstring(response.content)
-
     # get the current conditions element
     current_conditions = root.find('currentConditions')
 
-    # get the hourly forecast
-    # get the AST dateTime element
-    # ast_date_time = root.find(".//dateTime[@name='observation'][@zone='UTC']")
-
     # get all the data
-    temperature = current_conditions.find('temperature').text
-    station = current_conditions.find('station').text
-    wind_speed = current_conditions.find('wind/speed').text
-    wind_direction = current_conditions.find('wind/direction').text
-    wind_bearing = current_conditions.find('wind/bearing').text
-    condition = current_conditions.find('condition').text
-    iconcode = current_conditions.find('iconCode').text
-    textsummary = current_conditions.find('dateTime/timeStamp').text
-    date_string = textsummary
-    date_time_obj = datetime.strptime(date_string, '%Y%m%d%H%M%S')
-    print(date_time_obj)
+    temperature = current_conditions.find('temperature')
+    if temperature is not None:
+        temperature = temperature.text
+    else:
+        temperature = "no data"
 
-    dewpoint = current_conditions.find('dewpoint').text
-    pressure = current_conditions.find('pressure').text
-    visibility = current_conditions.find('visibility').text
-    relative_humidity = current_conditions.find('relativeHumidity').text
+    station = current_conditions.find('station')
+    if station is not None:
+        station = station.text
+    else:
+        station = "no data"
 
-    date_time_12hr = date_time_obj.strftime('%Y %m %d %H %M %S')
-    textsummary = date_time_12hr
+    wind_speed = current_conditions.find('wind/speed')
+    if wind_speed is not None:
+        wind_speed = wind_speed.text
+    else:
+        wind_speed = "no data"
+
+    wind_direction = current_conditions.find('wind/direction')
+    if wind_direction is not None:
+        wind_direction = wind_direction.text
+    else:
+        wind_direction = "no data"
+
+    wind_bearing = current_conditions.find('wind/bearing')
+    if wind_bearing is not None:
+        wind_bearing = wind_bearing.text
+    else:
+        wind_bearing = "no data"
+
+    condition = current_conditions.find('condition')
+    if condition is not None:
+        condition = condition.text
+    else:
+        condition = "no data"
+
+    iconcode = current_conditions.find('iconCode')
+    if iconcode is not None:
+        iconcode = iconcode.text
+    else:
+        iconcode = "no data"
+
+    textsummary = current_conditions.find('dateTime/timeStamp')
+    if textsummary is not None:
+        textsummary = textsummary.text
+    else:
+        textsummary = "no data"
+
+    dewpoint = current_conditions.find('dewpoint')
+    if dewpoint is not None:
+        dewpoint = dewpoint.text
+    else:
+        dewpoint = "no data"
+
+    pressure = current_conditions.find('pressure')
+    if pressure is not None:
+        pressure = pressure.text
+    else:
+        pressure = "no data"
+
+    visibility = current_conditions.find('visibility')
+    if visibility is not None:
+        visibility = visibility.text
+    else:
+        visibility = "no data"
+
+    relative_humidity = current_conditions.find('relativeHumidity')
+    if relative_humidity is not None:
+        relative_humidity = relative_humidity.text
+    else:
+        relative_humidity = "no data"
 
     # return the data as a dict
     return {'temperature': temperature, 'wind_speed': wind_speed, 'wind_direction': wind_direction, 'wind_bearing': wind_bearing, 'condition': condition, 'iconcode': iconcode, 'textsummary': textsummary, 'station': station, 'dewpoint': dewpoint, 'pressure': pressure, 'visibility': visibility, 'relative_humidity': relative_humidity}
@@ -208,4 +255,4 @@ def getSiteList():
 
 
 if __name__ == '__main__':
-    app.run(use_debugger=False, use_reloader=False, passthrough_errors=True)
+    app.run(host='0.0.0.0')
