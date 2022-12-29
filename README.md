@@ -12,24 +12,33 @@ To use the app, simply visit [http://weather.sagresnaw.art/](http://weather.sagr
 
 ## Configuration
 
-No configuration is needed to use this app. Simply visit the website and enter the name of the town or select from the list of available towns in the database to view the current weather conditions.
+No configuration is needed to use this app when accessing it through the web. However, if you want to run the app locally on your own computer, you will need to set up a local development environment and configure the app accordingly. 
+
+To set up the local development environment, you will need to install Python 3, Flask, and all required dependencies. You can do this by running the following command in your terminal:
+
+```bash
+pip install -r requirements.txt
+```
+Once all dependencies are installed, you can start the local server by running the following command in the root directory of the app:
+
+```bash
+export FLASK_APP=app
+flask run
+```
+The app should now be running on your local server at http://localhost:5000.
 
 ## Compilation
 
-This app does not need to be compiled, as it is a web-based application that can be accessed through a web browser.
+This app does not need to be compiled, as it is a web-based application that can be accessed through a web browser. When running the app locally, the Python code is interpreted by the local development server.
 
 ## Usage
 
 To use the app, follow these steps:
 
-1. Visit [http://weather.sagresnaw.art/](http://weather.sagresnaw.art/) in your web browser.
+1. Visit [http://localhost:5000](http://localhost:5000) in your web browser (if running the app locally) or [http://weather.sagresnaw.art/](http://weather.sagresnaw.art/) (if accessing the app through the web).
 2. Enter the name of the town or select from the list of available towns in the database.
 3. View the current weather conditions for the selected town.
 
 ## Support
 
-If you have any questions or encounter any issues while using the app, please don't hesitate to contact me. I will do my best to help you resolve any issues and ensure that you have a positive experience using Boreas Weather.
-
-I hope you find this app useful and enjoy staying informed about the weather at your cabin destination.
-
-Thank you for using Boreas Weather!
+If you have any questions or encounter any issues while using the app, please don't hesitate to contact me.
