@@ -1,5 +1,5 @@
+// Draw the Compass and display on Screen
 let bearing = document.getElementById('bearing').innerHTML;
-console.log(bearing)
 let canvas = document.getElementById('compass');
 let ctx = canvas.getContext('2d');
 
@@ -66,6 +66,11 @@ ctx.fillText("W", -87, 0);
 // restore transform to exclude the bearing rotation
 ctx.restore();
 
+
+
+
+
+// Convert temperatures on page to degrees Fahrenheit
 function convertToFahrenheit() {
     // Get the elements with the class "celcius"
     var celciusElements = document.getElementsByClassName("celcius");
@@ -101,6 +106,8 @@ function convertToFahrenheit() {
     }
 }
 
+
+// Convert temperatures on page to degrees Celsius
 function convertToCelcius() {
     // Get the elements with the class "celcius"
     var celciusElements = document.getElementsByClassName("celcius");
@@ -136,6 +143,11 @@ function convertToCelcius() {
     }
 }
 
+
+
+
+// Convert dates to local time zone
+
 // Select all elements that contain dates
 const dateElements = document.querySelectorAll('[data-date]');
 
@@ -162,11 +174,6 @@ dateElements.forEach(element => {
     // date.Ti
 
     console.log(date.toUTCString())
-    const timezoneOffset = date.getTimezoneOffset()
-
-    // Adjust the date to the local time zone
-    // date.setUTCMinutes(date.getUTCMinutes() - timezoneOffset);
-    // date.setDate(date.getDate() - 30)
 
     // Format the date using the toLocaleString method
     const formattedDate = date.toLocaleString('en-US', {
@@ -181,27 +188,3 @@ dateElements.forEach(element => {
     // Replace the text content of the element with the formatted date
     element.textContent = formattedDate;
 });
-
-
-
-// // Set up a form on the default page that allows the user to enter their location manually
-// $('#location-form').on('submit', function (e) {
-//     e.preventDefault();
-
-//     var location = $('#location-input').val();
-
-//     // Send the user's location data to the server
-//     $.ajax({
-//         url: '/location',
-//         type: 'POST',
-//         data: {
-//             location: location
-//         },
-//         success: function (response) {
-//             // Handle successful response from the server
-//         },
-//         error: function (xhr, status, error) {
-//             // Handle errors
-//         }
-//     });
-// }
