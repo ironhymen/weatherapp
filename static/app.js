@@ -171,9 +171,6 @@ dateElements.forEach(element => {
     date.setUTCHours(hours);
     date.setUTCMinutes(minutes);
     date.setUTCSeconds(seconds);
-    // date.Ti
-
-    console.log(date.toUTCString())
 
     // Format the date using the toLocaleString method
     const formattedDate = date.toLocaleString('en-US', {

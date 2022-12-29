@@ -8,7 +8,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'my-secret-key'
 db = sqlite3.connect('sitenames.db')
 cursor = db.cursor()
-print(cursor.execute("SELECT * FROM sites LIMIT 5;").fetchall())
 db.close()
 
 
@@ -44,38 +43,6 @@ def weather():
     hourly = get_hourly_forecast(response)
     almanac = get_almanac(response)
     return render_template("weather.html", weather=weather, almanac=almanac, hourly=hourly, townresults=townresults)
-
-
-# @app.route("/search", methods=["GET"])
-# def search():
-#     # Get the input value from the request
-#     db = sqlite3.connect('sitenames.db')
-#     cursor = db.cursor()
-#     inputValue = request.args.get("input")
-#     if inputValue:
-#         query = cursor.execute('SELECT codes, name, pcodes FROM sites WHERE name LIKE :name', {
-#                                'name': '%' + inputValue + '%'})
-#         results = query.fetchall()
-#     else:
-#         results = []
-#     db.close()
-#     return jsonify(results)
-
-
-# @app.route('/geolocationdata', methods=['GET'])
-# def geolocationdata():
-#     print("GETTING DATS THIS PART IS WORKING?")
-#     if 'latitude' in request.args and 'longitude' in request.args:
-#         print("Hello")
-#         site = sitegetter(
-#             lat=request.args['latitude'], long=request.args['longitude'])
-
-#         if site != 'none':
-#             return 'success', 200, {'Content-Type': 'text/plain'}
-#         else:
-#             return 'lat and long not found', 400, {'Content-Type': 'text/plain'}
-#     else:
-#         return "what the hell is going on"
 
 
 def get_weather(response):

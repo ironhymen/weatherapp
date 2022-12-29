@@ -24,7 +24,8 @@
             <datalist id="sitelist">
                 {% for town in townresults %}
                 <option value="{{ town }}">
-                    {% endfor %}
+                    <select value="{{ town }}">{{ town }}</select>
+                {% endfor %}
             </datalist>
             <button type="submit" id="townselect">Get Town</button>
         </form>
