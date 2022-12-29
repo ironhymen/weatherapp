@@ -1,3 +1,4 @@
+/* Set the default font for the entire page */
 html, body {
   font-family: neue-haas-grotesk-display,sans-serif;
   font-weight: 400;
@@ -10,11 +11,11 @@ html, body {
   background-color: #98FB98;
 }
 
+/* Set the font for all heading elements */
 h1, h2, h3, h4, h5, h6 {
   font-family: neue-haas-grotesk-display, sans-serif;
   font-weight: 700;
   font-style: normal;
-
 }
 
 .top-bar {
@@ -131,13 +132,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* .weatherinfo {
-  display: flex;
-  align-items: center;
-  margin-right: 2rem;
-  flex-direction: column;
-  justify-content: center;
-} */
 
 .temperature {
   font-size: 2.5rem;
@@ -169,7 +163,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .hourly-container {
   display: grid;
-  gap: 1em;
   place-items: center;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -182,32 +175,27 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.75em;
   width: 20%;
   min-width: 200px;
-  /* margin-bottom: 1rem;
-  margin-inline: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem; */
   padding: 1rem;
   background-color: #BFEFFF;
-  /* min-height: 425px;
-  max-height: 425px; */
   justify-content: space-between;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .forecast-day .hourtempbox .temperature {
+  margin-bottom: -2em;
+  z-index: 1;
   color: #fff;
-  font-size: 1.5em;
-  margin: -3em -3em;
-  z-index: 999999;
-  text-shadow: 2px 2px #000; 
+  text-shadow: 2px 2px #000;
+
 }
 
 .hourtempbox {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
+
 
 .hourly-table {
   border-collapse: collapse; /* merge adjacent border cells */

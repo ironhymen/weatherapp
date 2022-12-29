@@ -11,21 +11,24 @@
 
 <div class="container">
 
-    <div class="top-bar"><h2>{{weather['station']}}</h2><button type="button" onclick="convertToFahrenheit()">Switch to
-        Fahrenheit</button>
-    <button type="button" onclick="convertToCelcius()">Switch to
-        Celcius</button>
-    <div class="search-site">
-        <form action="/weather" method="get">
-            <input type="text" list="sitelist" name="townsearch" id="townsearch-input">
-            <datalist id="sitelist">
-                {% for town in townresults %}
-                <option value="{{ town }}">
-                    {% endfor %}
-            </datalist>
-            <button type="submit" id="townselect">Get Town</button>
-        </form>
-    </div></div>
+    <div class="top-bar">
+        <h2>{{weather['station']}}</h2>
+        <button type="button" onclick="convertToFahrenheit()">Switch to
+            Fahrenheit</button>
+        <button type="button" onclick="convertToCelcius()">Switch to
+            Celcius</button>
+        <div class="search-site">
+            <form action="/weather" method="get">
+                <input type="text" list="sitelist" name="townsearch" id="townsearch-input">
+                <datalist id="sitelist">
+                  {% for town in townresults %}
+                  <option value="{{ town }}">
+                  {% endfor %}
+                </datalist>
+                <button type="submit" id="townselect">Get Town</button>
+              </form>
+        </div>
+    </div>
 
 <script src="/static/search.js"></script>
 
@@ -102,25 +105,25 @@
             <tr>
                 <td colspan="2">{{ hour.condition }}</td>
             </tr>
-        {% if hour.windChill %}
-        <tr>
-            <td>Wind Chill:</td>
-            <td><div class="celcius">{{ hour.windChill }}&#176;C</div></td>
-        </tr>
-        {% endif %}
-        <tr>
-            <td>Wind Speed:</td>
-            <td> {{ hour.windSpeed }} {{ hour.windDirFull }}</td>
-        </tr>
-        <tr>
-            <td>Wind Gust:</td>
-            <td> {{ hour.windGusting }}</td>
-        </tr>
-        <tr>
-            <td>Wind Gusting:</td>
-            <td>{{ hour.windGusting }}</td>
-        </tr>
-    </table>
+            {% if hour.windChill %}
+            <tr>
+                <td>Wind Chill:</td>
+                <td><div class="celcius">{{ hour.windChill }}&#176;C</div></td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td>Wind Speed:</td>
+                <td> {{ hour.windSpeed }} {{ hour.windDirFull }}</td>
+            </tr>
+            <tr>
+                <td>Wind Gust:</td>
+                <td> {{ hour.windGusting }}</td>
+            </tr>
+            <tr>
+                <td>Wind Gusting:</td>
+                <td>{{ hour.windGusting }}</td>
+            </tr>
+         </table>
     </div>
     {% endfor %}
 </div>

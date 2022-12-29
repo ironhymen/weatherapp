@@ -22,12 +22,12 @@
         <form action="/weather" method="get">
             <input type="text" list="sitelist" name="townsearch" id="townsearch-input">
             <datalist id="sitelist">
-                {% for town in townresults %}
-                <option value="{{ town }}">
-                    {% endfor %}
+              {% for town in townresults %}
+              <option value="{{ town }}">
+              {% endfor %}
             </datalist>
             <button type="submit" id="townselect">Get Town</button>
-        </form>
+          </form>
     </div>
 </div>
 <script src="/static/search.js"></script>
