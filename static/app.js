@@ -1,3 +1,24 @@
+// Description: JavaScript for the Weather Station web app
+function switchFavicon() {
+    // Check if the user has enabled dark mode
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // If dark mode is enabled, set the dark mode favicon as the active favicon
+        document.getElementById("favicon-dark").rel = "icon";
+        document.getElementById("favicon-light").rel = "alternate icon";
+    } else {
+        // If dark mode is not enabled, set the light mode favicon as the active favicon
+        document.getElementById("favicon-light").rel = "icon";
+        document.getElementById("favicon-dark").rel = "alternate icon";
+    }
+}
+
+// Call the switchFavicon() function when the page loads
+window.addEventListener('load', switchFavicon);
+
+// Call the switchFavicon() function when the user changes the color scheme
+window.matchMedia('(prefers-color-scheme)').addListener(switchFavicon);
+
+
 // Draw the Compass and display on Screen
 let bearing = document.getElementById('bearing').innerHTML;
 let canvas = document.getElementById('compass');

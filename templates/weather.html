@@ -10,6 +10,11 @@
 
 
 <div class="container">
+    <div id="logo">
+        <h1>Boreas Weather</h1>
+        <img src="{{ url_for('static', filename='boreas-lines.svg') }}" alt="Logo" class="logo">
+    
+    </div>
 
     <div class="top-bar">
         <h2>{{weather['station']}}</h2>
