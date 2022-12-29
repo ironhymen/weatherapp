@@ -39,6 +39,10 @@ def weather():
     URL = f'https://dd.weather.gc.ca/citypage_weather/xml/{pcode}/{site}_e.xml'
     response = requests.get(URL)
 
+    if response.status_code == 404:
+        flash("No data available for the given location")
+        return redirect("/")
+
     weather = get_weather(response)
     hourly = get_hourly_forecast(response)
     almanac = get_almanac(response)
