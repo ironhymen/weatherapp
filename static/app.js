@@ -76,7 +76,7 @@ ctx.arc(0, 0, 118, 0, 2 * Math.PI);
 ctx.fill();
 
 // draw line
-if (bearing !== "no data") {
+if (bearing !== "None") {
     ctx.strokeStyle = '#000';
     ctx.fillStyle = "#ff0000";
     ctx.beginPath();
@@ -153,7 +153,7 @@ forecastElements.forEach(forecastElement => {
         ctx.fill();
 
         // Draw the line
-        if (bearing !== "no data") {
+        if (bearing !== "no data" && bearing !== "no info") {
             ctx.strokeStyle = '#000';
             ctx.fillStyle = "#ff0000";
             ctx.beginPath();
