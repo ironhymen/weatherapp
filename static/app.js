@@ -1,22 +1,54 @@
-// Description: JavaScript for the Weather Station web app
-function switchFavicon() {
-    // Check if the user has enabled dark mode
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        // If dark mode is enabled, set the dark mode favicon as the active favicon
-        document.getElementById("favicon-dark").rel = "icon";
-        document.getElementById("favicon-light").rel = "alternate icon";
+const collapseButton = document.getElementById('collapse-button');
+const forecastCollapseButton = document.getElementById('forecast-collapse-button');
+const hourlyContainer = document.getElementById('hourly-container');
+const forecastContainer = document.getElementById('forecast-container');
+const forecastDays = document.querySelectorAll('.forecast-day');
+const forecastDivs = document.querySelectorAll('.forecast');
+
+let forecastCollapsed = true;
+let hourlyCollapsed = true;
+
+forecastDivs.forEach((forecast, index) => {
+    if (forecastCollapsed && index > 2) {
+        forecast.style.display = 'none';
     } else {
-        // If dark mode is not enabled, set the light mode favicon as the active favicon
-        document.getElementById("favicon-light").rel = "icon";
-        document.getElementById("favicon-dark").rel = "alternate icon";
+        forecast.style.display = 'block';
     }
-}
+});
 
-// Call the switchFavicon() function when the page loads
-window.addEventListener('load', switchFavicon);
+forecastCollapseButton.addEventListener('click', function () {
+    forecastCollapsed = !forecastCollapsed;
+    forecastDivs.forEach((forecast, index) => {
+        if (forecastCollapsed && index > 2) {
+            forecast.style.display = 'none';
+        } else {
+            forecast.style.display = 'block';
+        }
+    });
+    forecastCollapseButton.innerHTML = forecastCollapsed ? 'Expand' : 'Collapse';
+});
 
-// Call the switchFavicon() function when the user changes the color scheme
-window.matchMedia('(prefers-color-scheme)').addListener(switchFavicon);
+forecastDays.forEach((forecast, index) => {
+    if (hourlyCollapsed && index > 4) {
+        forecast.style.display = 'none';
+    } else {
+        forecast.style.display = 'block';
+    }
+});
+
+collapseButton.addEventListener('click', function () {
+    hourlyCollapsed = !hourlyCollapsed;
+    forecastDays.forEach((forecast, index) => {
+        if (hourlyCollapsed && index > 4) {
+            forecast.style.display = 'none';
+        } else {
+            forecast.style.display = 'block';
+        }
+    });
+    collapseButton.innerHTML = hourlyCollapsed ? 'Expand' : 'Collapse';
+});
+
+
 
 
 // Draw the Compass and display on Screen
@@ -62,7 +94,7 @@ if (bearing !== "no data") {
     ctx.closePath();
     ctx.fill();
 } else {
-    // Set the fill color to yellow
+    // Set the fill color to black
     ctx.fillStyle = "#000";
     ctx.font = "bold 30px 'Helvetica Neue', sans-serif";
     ctx.fillText("None", -30, 10)
@@ -86,6 +118,86 @@ ctx.fillText("W", -87, 0);
 
 // restore transform to exclude the bearing rotation
 ctx.restore();
+
+const forecastElements = document.querySelectorAll('.forecast');
+
+forecastElements.forEach(forecastElement => {
+    // Get the canvas elements and the bearing elements inside the forecast div
+    const canvasElements = forecastElement.querySelectorAll('.forecast-compass');
+    const bearingElements = forecastElement.querySelectorAll('.fbearing');
+
+    // Iterate over the canvas elements and draw the compass for each one
+    canvasElements.forEach((canvasElement, index) => {
+        // Get the canvas context and the bearing value
+        const ctx = canvasElement.getContext('2d');
+        const bearing = bearingElements[index].innerHTML;
+
+        // Set the canvas dimensions and rotate the context according to the bearing
+        canvasElement.width = 250;
+        canvasElement.height = 250;
+        ctx.translate(125, 125);
+        ctx.rotate(bearing * Math.PI / 180);
+
+        // Draw the outer circle
+        ctx.fillStyle = '#000';
+        ctx.beginPath();
+        ctx.arc(0, 0, 122, 0, 2 * Math.PI);
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 0.05;
+        ctx.fill();
+
+        // Draw the inner circle
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(0, 0, 118, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // Draw the line
+        if (bearing !== "no data") {
+            ctx.strokeStyle = '#000';
+            ctx.fillStyle = "#ff0000";
+            ctx.beginPath();
+            ctx.moveTo(0, -90);
+            ctx.lineTo(-10, 0);
+            ctx.lineTo(10, 0);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokestyle = "#000";
+            ctx.fillStyle = "#000";
+            ctx.beginPath();
+            ctx.moveTo(0, 90);
+            ctx.lineTo(-10, 0);
+            ctx.lineTo(10, 0);
+            ctx.closePath();
+            ctx.fill();
+        } else {
+            // Set the fill color to yellow
+            ctx.fillStyle = "#000";
+            ctx.font = "bold 30px 'Helvetica Neue', sans-serif";
+            ctx.fillText("None", -30, 10)
+        }
+
+        // Save the current transform
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.translate(125, 125);
+
+        // Draw the N, S, E, W
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "#ff0000";
+        ctx.font = "bold 45px 'Helvetica Neue', sans-serif";
+        ctx.fillText("N", 0, -95);
+        ctx.fillStyle = "#000";
+        ctx.fillText("S", 0, 95);
+        ctx.fillText("E", 95, 0);
+        ctx.fillText("W", -87, 0);
+
+        // Restore the transform to exclude the bearing rotation
+        ctx.restore();
+    });
+});
+
 
 
 
@@ -206,3 +318,4 @@ dateElements.forEach(element => {
     // Replace the text content of the element with the formatted date
     element.textContent = formattedDate;
 });
+

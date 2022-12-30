@@ -42,8 +42,8 @@ h1, h2, h3, h4, h5, h6 {
 .top-bar {
   background-color: #BFEFFF;
   padding: 1rem;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .dropdown-menu {
@@ -79,8 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .dateinfo {
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   background-color: #BFEFFF;
@@ -106,38 +105,51 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
 }
 
+.misc-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.25rem;
+  justify-content: center;
+}
+
+.sunrise {
+  border-radius: 0.25rem;
+  background-color: #BFEFFF;
+  margin: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .moreweather {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
   background-color: #BFEFFF;
   border-radius: 0.5rem;
   margin: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-width: 25ch;
-  height: 100%;
 }
 
-.info-table {
+.info-table, .sunrise-table {
   border-collapse: collapse; /* collapse the borders between table cells */
   width: 100%; /* make the table fill the width of its container */
 }
 
-.info-table td {
+.info-table td, .sunrise-table td {
   padding: 8px; /* add some padding to the table cells */
   text-align: left; /* align the text to the left */
 }
 
-.info-table tr:nth-child(even) {
+.info-table tr:nth-child(even), .sunrise-table tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.2); /* add a light grey background color to every even row */
 }
 
-.info-table tr:hover {
+.info-table tr:hover, .sunrise-table tr:hover {
   background-color: #ff0482; /* add a light grey background color to the rows when the mouse is hovering over them */
 }
 
-.info-table td:nth-child(2) {
+.info-table td:nth-child(2), .sunrise-table td:nth-child(2) {
   font-weight: 700;
 }
 
@@ -157,7 +169,6 @@ h1, h2, h3, h4, h5, h6 {
 .temperature {
   font-size: 2.5rem;
   font-weight: 700;
-  margin-left: 1rem;
 }
 
 
@@ -174,11 +185,112 @@ h1, h2, h3, h4, h5, h6 {
   margin: 1rem;
 }
 
+.forecast-container {
+  display: grid;
+  place-items: baseline;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.forecast canvas {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.forecast-temp {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin: 0 auto;
+}
+.forecast img {
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+}
+
+.forecast .temperature {
+
+  margin: auto;
+  z-index: 99;
+  position: absolute;
+  vertical-align: middle;
+  margin-top: 20px;
+  margin-left: -20px;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+}
+
+.forecast {
+  margin: 1rem;
+  background-color: #BFEFFF;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.forecast table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.forecast th,
+.forecast td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.forecast th {
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.forecast td {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.forecast td:first-child {
+  width: 35%;
+}
+
+.hidden {
+  display: none;
+}
+
+.collapse-button {
+  /* Add some basic styling to the button */
+  width: 100%; /* Stretch the button to the full width of the container */
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0; /* Remove the rounded corners */
+  background-color: #ff0482;
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+
+  /* Add some hover and active styles */
+  transition: background-color 0.3s;
+  
+}
+
+.collapse-button:hover {
+  background-color: #ff0482;
+}
+.collapse-button:active {
+  background-color: #5e002f;
+}
+
 .hourly-header {
   margin-top: 2rem;
   margin-bottom: 1rem;
   text-align: center;
   background-color: #BFEFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-radius: 0.5rem;
 }
 
@@ -209,6 +321,8 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 2px 2px #000;
 
 }
+
+
 
 .hourtempbox {
   display: flex;

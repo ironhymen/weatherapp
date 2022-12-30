@@ -46,7 +46,9 @@ def weather():
     weather = get_weather(response)
     hourly = get_hourly_forecast(response)
     almanac = get_almanac(response)
-    return render_template("weather.html", weather=weather, almanac=almanac, hourly=hourly, townresults=townresults)
+    sunstats = getSunRise(response)
+    forecast_data = getForecast(response)
+    return render_template("weather.html", weather=weather, almanac=almanac, hourly=hourly, townresults=townresults, sunstats=sunstats, forecast_data=forecast_data)
 
 
 def get_weather(response):
@@ -216,6 +218,59 @@ def get_almanac(response):
     return {'extremeMaxTemp': extremeMaxTemp, 'extremeMax_year': extremeMax_year, 'extremeMinTemp': extremeMinTemp, 'extremeMin_year': extremeMin_year, 'normalMaxTemp': normalMaxTemp, 'normalMax_year': normalMax_year, 'normalMinTemp': normalMinTemp, 'normalMin_year': normalMin_year, 'normalMeanTemp': normalMeanTemp, 'normalMean_year': normalMean_year, 'extremeRainfall': extremeRainfall, 'extremeRainfall_year': extremeRainfall_year, 'extremeSnowfall': extremeSnowfall, 'extremeSnowfall_year': extremeSnowfall_year, 'extremePrecipitation': extremePrecipitation, 'extremePrecipitation_year': extremePrecipitation_year, 'extremeSnowOnGround': extremeSnowOnGround, 'extremeSnowOnGround_year': extremeSnowOnGround_year, 'almanacpop': almanacpop}
 
 
+def getSunRise(response):
+    # create an xml element tree
+    root = ET.fromstring(response.content)
+
+    # Find the riseSet element
+    rise_set = root.find("riseSet")
+
+    # Initialize variables with "no info"
+    sunrise_year = "no info"
+    sunrise_month = "no info"
+    sunrise_day = "no info"
+    sunrise_hour = "no info"
+    sunrise_minute = "no info"
+    sunset_year = "no info"
+    sunset_month = "no info"
+    sunset_day = "no info"
+    sunset_hour = "no info"
+    sunset_minute = "no info"
+
+    # If the riseSet element exists, extract the data
+    if rise_set is not None:
+        # Find the sunrise and sunset elements
+        sunrise_element = rise_set.find("dateTime[@name='sunrise']")
+        sunset_element = rise_set.find("dateTime[@name='sunset']")
+
+        # Extract the year, month, day, hour, and minute elements from the sunrise and sunset elements
+        sunrise_year = sunrise_element.find("year").text
+        sunrise_month = sunrise_element.find("month").text
+        sunrise_day = sunrise_element.find("day").text
+        sunrise_hour = sunrise_element.find("hour").text
+        sunrise_minute = sunrise_element.find("minute").text
+
+        sunset_year = sunset_element.find("year").text
+        sunset_month = sunset_element.find("month").text
+        sunset_day = sunset_element.find("day").text
+        sunset_hour = sunset_element.find("hour").text
+        sunset_minute = sunset_element.find("minute").text
+
+    # Create datetime objects for sunrise and sunset
+    sunrise = datetime(int(sunrise_year), int(sunrise_month), int(
+        sunrise_day), int(sunrise_hour), int(sunrise_minute))
+    sunset = datetime(int(sunset_year), int(sunset_month), int(
+        sunset_day), int(sunset_hour), int(sunset_minute))
+
+    sunrise = sunrise.strftime("%A %B %d, %Y at %I:%M %p")
+    sunset = sunset.strftime("%A %B %d, %Y at %I:%M %p")
+    sunstats = {
+        'Sunrise': sunrise,
+        'Sunset': sunset
+    }
+    return sunstats
+
+
 def getSiteList():
     db = sqlite3.connect('sitenames.db')
     cursor = db.cursor()
@@ -227,6 +282,78 @@ def getSiteList():
         townresults.append(town)
 
     return townresults
+
+
+def getForecast(response):
+    root = ET.fromstring(response.content)
+    forecast_data = []
+    for forecast in root.findall('./forecastGroup/forecast'):
+        forecast_dict = {}
+        period = forecast.find('period')
+        if period is not None:
+            forecast_dict['period'] = period.text
+        text_summary = forecast.find('textSummary')
+        if text_summary is not None:
+            forecast_dict['text_summary'] = text_summary.text
+        cloud_precip = forecast.find('cloudPrecip/textSummary')
+        if cloud_precip is not None:
+            forecast_dict['cloud_precip'] = cloud_precip.text
+        abbreviated_forecast = forecast.find('abbreviatedForecast/iconCode')
+        if abbreviated_forecast is not None:
+            forecast_dict['abbreviated_forecast'] = abbreviated_forecast.text
+        temperatures = forecast.find('temperatures')
+        if temperatures is not None:
+            text_summary = temperatures.find('textSummary').text
+            if text_summary is not None:
+                forecast_dict['Temperature Summary'] = text_summary
+            temperature = temperatures.find('temperature').text
+            if temperature is not None:
+                forecast_dict['Temperature'] = temperature
+        winds = forecast.find('winds')
+        if winds is not None:
+            text_summary = winds.find('textSummary')
+            if text_summary is not None:
+                forecast_dict['Wind Summary'] = text_summary.text
+
+            # Create an empty list to store the wind data
+            wind_data = []
+
+            # Iterate over the wind elements
+            for wind in winds.findall('wind'):
+                # Extract the speed, gust, direction, and bearing elements
+                speed = wind.find('speed').text
+                if speed is None:
+                    speed = "no info"
+                gust = wind.find('gust').text
+                if gust is None:
+                    gust = "no info"
+                direction = wind.find('direction').text
+                if direction is None:
+                    direction = "no info"
+                bearing = wind.find('bearing').text
+                if bearing is None:
+                    bearing = "no info"
+                # Store the extracted data in a dictionary
+                data = {
+                    "Speed": speed + "km/h " + direction,
+                    "Gusting": gust + "km/h" + direction,
+                    "Bearing": bearing
+                }
+
+                # Add the dictionary to the wind_data list
+                wind_data.append(data)
+
+            # Add the wind_data list to the forecast_dict dictionary
+            forecast_dict['Wind Data'] = wind_data
+
+        relative_humidity = forecast.find('relativeHumidity')
+        if relative_humidity is not None:
+            forecast_dict['relative_humidity'] = relative_humidity.text
+        wind_chill = forecast.find('windChill')
+        if wind_chill is not None:
+            forecast_dict['wind_chill'] = wind_chill.text
+        forecast_data.append(forecast_dict)
+    return forecast_data
 
 
 if __name__ == '__main__':
