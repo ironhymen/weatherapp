@@ -315,7 +315,7 @@ h1, h2, h3, h4, h5, h6 {
   place-items: center;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--dark-primary-color);
   padding: 1rem;
   border-radius: 0.5rem;
 }
