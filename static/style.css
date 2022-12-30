@@ -1,6 +1,11 @@
-link[rel="icon"] {
-  fill: #fff;  /* Change the color of the favicon */
+:root {
+  --tertiary-color: #E8B26A;
+  --light-primary-color: #293C6C;
+  --primary-color: #2751A0;
+  --secondary-color: #9090CF;  
+  --dark-primary-color: #2B2F4B;
 }
+
 
 
 /* Set the default font for the entire page */
@@ -13,7 +18,8 @@ html, body {
   box-sizing: border-box;
   font-size: 16px;
   line-height: 1.5;
-  background-color: #98FB98;
+  background-color: var(--secondary-color);
+  color: #fff;
 }
 
 /* Set the font for all heading elements */
@@ -40,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .top-bar {
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
   padding: 1rem;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -59,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 500px;
   padding: 25px;
   border-radius: 0.75em;
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
 }
 
 .container {
@@ -82,19 +88,19 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
 }
 
 .moreinfo {
   display: flex;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--dark-primary-color);
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .condition {
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
   border-radius: 0.5rem;
   margin: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -115,7 +121,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .sunrise {
   border-radius: 0.25rem;
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
   margin: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -124,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
   border-radius: 0.5rem;
   margin: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -142,11 +148,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .info-table tr:nth-child(even), .sunrise-table tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.2); /* add a light grey background color to every even row */
+  background-color: var(--light-primary-color); /* add a light grey background color to every even row */
 }
 
 .info-table tr:hover, .sunrise-table tr:hover {
-  background-color: #ff0482; /* add a light grey background color to the rows when the mouse is hovering over them */
+  background-color: var(--tertiary-color); /* add a light grey background color to the rows when the mouse is hovering over them */
 }
 
 .info-table td:nth-child(2), .sunrise-table td:nth-child(2) {
@@ -159,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
   display: table;
   margin: 0.25rem;
   padding: 1rem;
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
   border-radius: 0.5rem;
   min-width: 25ch;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -187,10 +193,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .forecast-container {
   display: grid;
-  place-items: baseline;
+  align-items: baseline;
+  justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--dark-primary-color);
   padding: 1rem;
   border-radius: 0.5rem;
 }
@@ -227,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .forecast {
   margin: 1rem;
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   overflow: hidden;
@@ -250,13 +257,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .forecast tr:nth-child(even){
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--light-primary-color);
 }
 
 .forecast td {
   font-size: 0.9rem;
   line-height: 1.5;
 
+}
+
+.forecast .forecast-head {
+  text-align: center;
 }
 
 .forecast td:first-child {
@@ -273,7 +284,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.5em 1em;
   border: none;
   border-radius: 0; /* Remove the rounded corners */
-  background-color: #ff0482;
+  background-color: var(--tertiary-color);
   color: #fff;
   font-size: 1em;
   cursor: pointer;
@@ -284,17 +295,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .collapse-button:hover {
-  background-color: #ff0482;
+  background-color: var(--tertiary-color);
 }
 .collapse-button:active {
-  background-color: #5e002f;
+  background-color: var(--tertiary-color);
 }
 
 .hourly-header {
   margin-top: 2rem;
   margin-bottom: 1rem;
   text-align: center;
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-radius: 0.5rem;
 }
@@ -311,10 +322,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .forecast-day {
   border-radius: 0.75em;
-  width: 20%;
   min-width: 200px;
   padding: 1rem;
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
   justify-content: space-between;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -348,18 +358,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hourly-table tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.2) /* add a background color to every other row */
+  background-color: var(--light-primary-color); /* add a background color to every other row */
 }
 
 .hourly-table tr:hover {
-  background-color: #ff0482; /* add a hover effect to the rows */
+  background-color: var(--tertiary-color) /* add a hover effect to the rows */
 }
 
 .hourly-table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #ff0482;
+  background-color: var(--tertiary-color);
   color: white;
 }
 
@@ -379,7 +389,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  background-color: #BFEFFF;
+  background-color: var(--primary-color);
   margin: 2rem;
 }
 
@@ -388,11 +398,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .almanac-table tbody tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.2); /* add a background color to every other row */
+  background-color: var(--light-primary-color); /* add a background color to every other row */
 }
 
 .almanac-table tbody tr:hover {
-  background-color: #ff0482; /* add a hover effect to the rows */
+  background-color: var(--tertiary-color); /* add a hover effect to the rows */
 }
 
 .almanac-table td[colspan="3"] {
@@ -421,7 +431,7 @@ h1, h2, h3, h4, h5, h6 {
 #townselect {
   /* add some styles to the button element */
   width: 100px;
-  background-color: #ff0482;
+  background-color: var(--tertiary-color);
   color: white;
   font-family: neue-haas-grotesk-display,sans-serif;
   font-weight: 700;
@@ -454,6 +464,9 @@ h1, h2, h3, h4, h5, h6 {
 
 
 @media only screen and (max-width: 800px) {
+  .forecast-container{
+    grid-template-columns: 1fr;
+  }
   .container {
     width: 95%;
   }
@@ -482,9 +495,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1140px;
   }
-}
+} */
 

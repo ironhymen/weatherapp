@@ -123,8 +123,7 @@
         {% endif %}
           <table>
             <tr>
-              <th>Period</th>
-              <td>{{ forecast.period }}</td>
+              <td colspan="2" class="forecast-head"><h4>{{ forecast.period }}</h4></td>
             </tr>
             <td colspan="2">           
               <div class="forecast-temp">
@@ -142,8 +141,7 @@
           </div>
           </tr>
             <tr>
-              <th>Text Summary</th>
-              <td>{{ forecast.text_summary }}</td>
+              <td colspan="2">{{ forecast.text_summary }}</td>
             </tr>
             <tr>
               <th>Cloud Precipitation</th>
