@@ -2,6 +2,10 @@
 
 Welcome to Boreas Weather, an app created as a final project for the CS50 course. It is designed to help you stay informed about the weather at your cabin destination in Canada. All of the weather information displayed on the app is sourced from Environment Canada. Please note that only Canadian weather stations are included in the app.
 
+[Video Demo:](https://www.youtube.com/watch?v=zyHU9IxZp_Q)
+
+Video Demo: https://www.youtube.com/watch?v=zyHU9IxZp_Q
+
 ## Why "Boreas"?
 
 The name "Boreas" was chosen for this app because it is the Greek god of the north wind and bringer of cold winter air. As this app is designed to help cabin goers stay informed about the weather, particularly in colder climates, the name "Boreas" seemed like a fitting choice.
