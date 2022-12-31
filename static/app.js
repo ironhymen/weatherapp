@@ -1,3 +1,4 @@
+// collapse button functionality for the forecast and hourly forecast
 const collapseButton = document.getElementById('collapse-button');
 const forecastCollapseButton = document.getElementById('forecast-collapse-button');
 const hourlyContainer = document.getElementById('hourly-container');
@@ -5,46 +6,58 @@ const forecastContainer = document.getElementById('forecast-container');
 const forecastDays = document.querySelectorAll('.forecast-day');
 const forecastDivs = document.querySelectorAll('.forecast');
 
+// Set the initial state of the collapse button
 let forecastCollapsed = true;
 let hourlyCollapsed = true;
 
+// Set the initial state of the forecast
 forecastDivs.forEach((forecast, index) => {
+    // Hide all but the first three forecasts
     if (forecastCollapsed && index > 2) {
         forecast.style.display = 'none';
     } else {
         forecast.style.display = 'block';
     }
 });
-
+// Add event listener to the collapse button
 forecastCollapseButton.addEventListener('click', function () {
+    // Toggle the state of the collapse button
     forecastCollapsed = !forecastCollapsed;
     forecastDivs.forEach((forecast, index) => {
+        // Hide all but the first three forecasts
         if (forecastCollapsed && index > 2) {
             forecast.style.display = 'none';
         } else {
             forecast.style.display = 'block';
         }
     });
+    // Update the text of the collapse button
     forecastCollapseButton.innerHTML = forecastCollapsed ? 'Expand' : 'Collapse';
 });
 
+// Set the initial state of the hourly forecast
 forecastDays.forEach((forecast, index) => {
     if (hourlyCollapsed && index > 4) {
+        // Hide all but the first five forecasts
         forecast.style.display = 'none';
     } else {
         forecast.style.display = 'block';
     }
 });
 
+//  Add event listener to the collapse button
 collapseButton.addEventListener('click', function () {
+    // Toggle the state of the collapse button
     hourlyCollapsed = !hourlyCollapsed;
     forecastDays.forEach((forecast, index) => {
+        // Hide all but the first five forecasts
         if (hourlyCollapsed && index > 4) {
             forecast.style.display = 'none';
         } else {
             forecast.style.display = 'block';
         }
     });
+    // Update the text of the collapse button
     collapseButton.innerHTML = hourlyCollapsed ? 'Expand' : 'Collapse';
 });
 
@@ -70,7 +83,7 @@ ctx.lineWidth = 0.05; // make the circle less thick
 ctx.fill();
 
 // draw inner circle
-ctx.fillStyle = 'white';
+ctx.fillStyle = '#dfdfdf';
 ctx.beginPath();
 ctx.arc(0, 0, 118, 0, 2 * Math.PI);
 ctx.fill();
@@ -119,6 +132,7 @@ ctx.fillText("W", -87, 0);
 // restore transform to exclude the bearing rotation
 ctx.restore();
 
+// Draw the Compass and display on Screen inside each forecast
 const forecastElements = document.querySelectorAll('.forecast');
 
 forecastElements.forEach(forecastElement => {
@@ -147,7 +161,7 @@ forecastElements.forEach(forecastElement => {
         ctx.fill();
 
         // Draw the inner circle
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = '#dfdfdf';
         ctx.beginPath();
         ctx.arc(0, 0, 118, 0, 2 * Math.PI);
         ctx.fill();

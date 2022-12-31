@@ -1,3 +1,4 @@
+/* Set color variables for the entire page */
 :root {
   --tertiary-color: #E8B26A;
   --light-primary-color: #293C6C;
@@ -29,15 +30,25 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
 }
 
+/* Make the page a flex container in a column */
 .container{
   display: flex;
   flex-direction: column;
+  width: calc(200px + (800px - 200px) * (100% - 0%));
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 1rem;
+  justify-items: center;
 }
 
+/* Logo styles */
 #logo {
   display: flex;
   flex-direction: row;
   margin: 0 auto;
+  grid-area: logo;
+  text-anchor: middle;
+  align-self: center;
 }
 
 .logo {
@@ -45,44 +56,71 @@ h1, h2, h3, h4, h5, h6 {
   width: 50px;
 }
 
+/* Weather page styles */
+/* Top bar contains the logo, search bar and weather station info and buttons to change the weather to Fahrenheit or Celsius */
 .top-bar {
   background-color: var(--primary-color);
   padding: 1rem;
   border-radius: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr; 
+  grid-template-areas: 
+            "weast logo city"
+            ". search fcbut";
 }
 
+/* Weather station text div inside the top bar */
+.weather-station {
+  grid-area: weast;
+}
+
+/* City text div inside the top bar */
+.city {
+  grid-area: city;
+  text-align: end;
+  bottom: 0;
+}
+
+
+/* Fahrenheit/Celsius button inside the top bar */
+.fcbut {
+  grid-area: fcbut;
+  align-self: end;
+  justify-self: end;
+  text-align: end;
+}
+/* Search bar inside the top bar */
+.search-grid {
+  grid-area: search;
+}
+/* Dropdown menu styling */
 .dropdown-menu {
   position: absolute;
   z-index: 999;
   background-color: #ccc;
 }
-
+/* Search bar styling */
 .search-site {
   margin: 0 auto;
   text-align: center;
-  min-width: 300px;
-  max-width: 500px;
   padding: 25px;
   border-radius: 0.75em;
-  background-color: var(--primary-color);
+  background-color: var(--dark-primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
-
-.container {
-  width: minmax(200px, 800px);
-  margin: 0 auto;
-  padding: 1rem;
-  justify-items: center;
-}
-
+/* Weather conditions and wind and image and extra info about todays weather div */
 .main-weather {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
+  width: 100%;
   
 }
 
+/* The date information  inside the main weather*/
 .dateinfo {
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -91,6 +129,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--primary-color);
 }
 
+/* Extra information div inside the main weather */
 .moreinfo {
   display: flex;
   justify-content: center;
@@ -98,7 +137,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
-
+/* Temperature condition and condition image div styling */
 .condition {
   background-color: var(--primary-color);
   border-radius: 0.5rem;
@@ -110,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
   min-width: 25ch;
   padding: 1rem;
 }
-
+/* Sunrise and misc info container */
 .misc-container {
   display: flex;
   flex-direction: column;
@@ -118,14 +157,14 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0.25rem;
   justify-content: center;
 }
-
+/* sunrise table */
 .sunrise {
   border-radius: 0.25rem;
   background-color: var(--primary-color);
   margin: 0.25rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
+/* misc weather div styling */
 .moreweather {
   padding: 1rem;
   display: flex;
@@ -136,7 +175,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-width: 25ch;
 }
-
+/* misc weather info table styling */
 .info-table, .sunrise-table {
   border-collapse: collapse; /* collapse the borders between table cells */
   width: 100%; /* make the table fill the width of its container */
@@ -158,7 +197,7 @@ h1, h2, h3, h4, h5, h6 {
 .info-table td:nth-child(2), .sunrise-table td:nth-child(2) {
   font-weight: 700;
 }
-
+/* wind div styling */
 .wind {
   position: relative;
   text-align: center;
@@ -171,26 +210,25 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
+/* temperature styling */
 .temperature {
   font-size: 2.5rem;
   font-weight: 700;
 }
 
-
-
+/* compass canvass styling */
 #compass {
   max-height: 100%;
   width: minmax(50px, 250px);
   height: 100%;
 
 }
-
+/* Special font styling for the bearing */
 #bearing {
   font-size: 0.8rem;
   margin: 1rem;
 }
-
+/* Container for the forecast */
 .forecast-container {
   display: grid;
   align-items: baseline;
@@ -201,25 +239,26 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
   border-radius: 0.5rem;
 }
-
+/* forecast wind compass canvas styling */
 .forecast canvas {
   width: 100px;
   display: block;
   margin: 0 auto;
 }
-
+/* forecast temp font styling and alignment */
 .forecast-temp {
   width: 100px;
   height: 100px;
   text-align: center;
   margin: 0 auto;
 }
+/* forecast image styling and alignment */
 .forecast img {
   display: block;
   margin: 0 auto;
   position: absolute;
 }
-
+/* temperature styling for inside the forecast div*/
 .forecast .temperature {
 
   margin: auto;
@@ -231,7 +270,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   text-shadow: 2px 2px #000;
 }
-
+/* styling for each forecast div inside the forecast container */
 .forecast {
   margin: 1rem;
   background-color: var(--primary-color);
@@ -239,7 +278,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.5rem;
   overflow: hidden;
 }
-
+/* table styling for inside the forecast div */
 .forecast table {
   width: 100%;
   border-collapse: collapse;
@@ -300,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
 .collapse-button:active {
   background-color: var(--tertiary-color);
 }
-
+/* hourly forecast header div */
 .hourly-header {
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -309,7 +348,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-radius: 0.5rem;
 }
-
+/* hourly forecast container */
 .hourly-container {
   display: grid;
   place-items: center;
@@ -319,7 +358,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
   border-radius: 0.5rem;
 }
-
+/* hourly forecast divs inside the hourly forecast container */
 .forecast-day {
   border-radius: 0.75em;
   min-width: 200px;
@@ -328,7 +367,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
-
+/* temperature styling inside the hourly forecast div */
 .forecast-day .hourtempbox .temperature {
   margin-bottom: -2em;
   z-index: 1;
@@ -336,9 +375,7 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 2px 2px #000;
 
 }
-
-
-
+/* container for temp and condition image inside the hourly forecast div */
 .hourtempbox {
   display: flex;
   flex-direction: column;
@@ -346,7 +383,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-
+/* table inside the hourly forecast div */
 .hourly-table {
   border-collapse: collapse; /* merge adjacent border cells */
   width: 100%; /* fill the available width */
@@ -384,15 +421,17 @@ h1, h2, h3, h4, h5, h6 {
 /* .hourly-condition {
   margin-bottom: 0;
 } */
-
+/* almanac styling */
 .almanac {
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   background-color: var(--primary-color);
   margin: 2rem;
+  width: fit-content;
+  align-self: center;
 }
-
+/* almanac table styling */
 .almanac-table {
   margin: 0 auto;
 }
@@ -427,8 +466,8 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #ccc;
   border-radius: 4px;
 }
-
-#townselect {
+/* index and weather search bar */
+#townselect, #fahbutton, #celbutton {
   /* add some styles to the button element */
   width: 100px;
   background-color: var(--tertiary-color);
@@ -441,6 +480,20 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 4px;
   cursor: pointer;
 }
+
+#fahbutton, #celbutton {
+    /* add some styles to the button element */
+    width: 50px;
+    background-color: var(--tertiary-color);
+    color: white;
+    font-family: neue-haas-grotesk-display,sans-serif;
+    font-weight: 700;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
 /* add some styles to the flashes element */
 .flashes {
@@ -462,13 +515,44 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-
+/* responsive changes for mobile */
 @media only screen and (max-width: 800px) {
+  .top-bar{
+    grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
+  grid-template-areas: 
+            "logo"
+            "weast"
+            "search"
+            "fcbut";
+  }
+  #logo {
+    text-anchor: start;
+    align-self: middle;
+    margin: 0 auto;
+  }
+  .search-site{
+    align-self: center;
+    justify-self: center;
+  }
+  .city {
+    display: none;
+  }
+  .weather-station {
+    text-align: center;
+    align-self: middle;
+    margin: 0 auto;
+  }
+  .fcbut {
+    align-self: end;
+    justify-self: start;
+    text-align: start;
+  }
   .forecast-container{
     grid-template-columns: 1fr;
   }
   .container {
-    width: 95%;
+    max-width: 800px;
   }
 
   .moreinfo {
@@ -494,10 +578,3 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 50%;
   }
 }
-
-/* @media only screen and (min-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
-} */
-
